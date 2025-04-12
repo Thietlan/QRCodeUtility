@@ -8,44 +8,62 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import javax.imageio.ImageIO;
 import io.nayuki.qrcodegen.QrCode;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import io.nayuki.qrcodegen.QrSegment;
 import io.nayuki.qrcodegen.QrSegmentAdvanced;
 
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+        System.out.println("Enter a cool thing to put into a qr code:");
+        String QRCodeText = myObj.nextLine();
+        QrCode qr0 = QrCode.encodeText(QRCodeText, QrCode.Ecc.MEDIUM);
+        BufferedImage img = toImage(qr0, 20, 1,0xffffff,0x000000);  // See QrCodeGeneratorDemo
+        ImageIO.write(img, "png", new File("qr-code.png"));
+          // Output user input
 
-        //generateWiFiQRCode("TP-Link_acasa5Ghz","WelcomeTakeASeat123");
-        /*Scanner s = new Scanner(new File("testNetworkFile.txt"));
-        Pattern pattern = Pattern.compile("psk=(.*)");
-        String nextMatch = s.findWithinHorizon(pattern, 0);
-        Matcher matcher = pattern.matcher(nextMatch);
 
-        if (matcher.find()) {
-            String pskValue = matcher.group(1); // Capture group 1
-            System.out.println("Extracted PSK: " + pskValue);
-        } else {
-            System.out.println("No match found.");
-        }
-        System.out.println(nextMatch);
-        */
+//        System.out.println(extractFieldFromTOMLFile("testNetworkFile.txt","psk"));
+//        System.out.println(extractFieldFromTOMLFile("testNetworkFile.txt","ssid"));
+//        String ssid = extractFieldFromTOMLFile("testNetworkFile.txt","ssid");
+//        String psk = extractFieldFromTOMLFile("testNetworkFile.txt","psk");
+//        Set<String> files= setOfWiFiFiles("src\\main\\java\\org\\example\\Main.java");
+//        for (String file : files) {
+//            System.out.println(file);
+//        }
+//        generateWiFiQRCode(extractFieldFromTOMLFile("testNetworkFile.txt","ssid"),extractFieldFromTOMLFile("testNetworkFile.txt","psk"));
 
-        System.out.println(extractFieldFromTOMLFile("testNetworkFile.txt","psk"));
-        System.out.println(extractFieldFromTOMLFile("testNetworkFile.txt","ssid"));
     }
 
 
+
+    private static Set<String> setOfWiFiFiles(String dir) {
+
+
+            File dirFile = new File(dir);
+            System.out.println(dirFile.isDirectory());
+            if (dirFile.isDirectory() && dirFile.exists()) {
+                System.out.println("got here");
+                return Stream.of(dirFile.listFiles())
+                        .filter(file -> !file.isDirectory())
+                        .map(File::getName)
+                        .collect(Collectors.toSet());
+            }
+            else return null;
+
+
+    }
 
 
     private static String extractFieldFromTOMLFile(String path,String field) {
@@ -80,8 +98,7 @@ public class Main {
         String WiFi="WIFI:S:%s;T:WPA;P:%s;;";
         WiFi=String.format(WiFi,SSID,psk);
         QrCode qr0 = QrCode.encodeText(WiFi, QrCode.Ecc.MEDIUM);
-        //QrCodeGeneratorDemo.doBasicDemo();
-        BufferedImage img = toImage(qr0, 20, 1,0xFFFFFF,0x000000);  // See QrCodeGeneratorDemo
+        BufferedImage img = toImage(qr0, 20, 1,0xcc185a,0x2721d9);  // See QrCodeGeneratorDemo
         ImageIO.write(img, "png", new File("qr-code.png"));
     }
 
