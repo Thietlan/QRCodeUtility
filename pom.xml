@@ -61,7 +61,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>org.example.Main</mainClass>
+                            <mainClass>org.Thietlan.DriverClass.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -78,7 +78,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.example.Main</mainClass>
+                                    <mainClass>org.Thietlan.DriverClass.Main</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

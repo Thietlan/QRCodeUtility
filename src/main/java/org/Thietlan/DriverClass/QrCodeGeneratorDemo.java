@@ -1,4 +1,4 @@
-package org.example;/*
+package org.Thietlan.DriverClass;/*
  * QR Code generator demo (Java)
  * 
  * Run this command-line program with no arguments. The program creates/overwrites a bunch of
@@ -177,7 +177,7 @@ public final class QrCodeGeneratorDemo {
 	/**
 	 * Returns a raster image depicting the specified QR Code, with
 	 * the specified module scale, border modules, and module colors.
-	 * <p>For example, scale=10 and border=4 means to pad the QR Code with 4 light border
+	 * <p>For Thietlan, scale=10 and border=4 means to pad the QR Code with 4 light border
 	 * modules on all four sides, and use 10&#xD7;10 pixels to represent each module.
 	 * @param qr the QR Code to render (not {@code null})
 	 * @param scale the side length (measured in pixels, must be positive) of each module

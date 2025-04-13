@@ -1,4 +1,4 @@
-package org.example;
+package org.Thietlan.DriverClass;
 
 
 // Simple operation
@@ -6,26 +6,23 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.*;
 import javax.imageio.ImageIO;
+
+import org.Thietlan.Utilities.Utils;
 import io.nayuki.qrcodegen.QrCode;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import io.nayuki.qrcodegen.QrSegment;
-import io.nayuki.qrcodegen.QrSegmentAdvanced;
-
-
 public class Main {
     public static void main(String[] args) throws IOException {
-        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+        Scanner myObj = new Scanner(System.in);
+        // Create a Scanner object
+        Utils obj = new Utils();
+        obj.sayHello();
         System.out.println("Enter a cool thing to put into a qr code:");
         String QRCodeText = myObj.nextLine();
         QrCode qr0 = QrCode.encodeText(QRCodeText, QrCode.Ecc.MEDIUM);
@@ -38,7 +35,7 @@ public class Main {
 //        System.out.println(extractFieldFromTOMLFile("testNetworkFile.txt","ssid"));
 //        String ssid = extractFieldFromTOMLFile("testNetworkFile.txt","ssid");
 //        String psk = extractFieldFromTOMLFile("testNetworkFile.txt","psk");
-//        Set<String> files= setOfWiFiFiles("src\\main\\java\\org\\example\\Main.java");
+//        Set<String> files= setOfWiFiFiles("src\\main\\java\\org\\Thietlan\\Main.java");
 //        for (String file : files) {
 //            System.out.println(file);
 //        }
