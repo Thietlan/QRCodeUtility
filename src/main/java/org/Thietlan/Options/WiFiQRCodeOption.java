@@ -1,42 +1,38 @@
 package org.Thietlan.Options;
 
-import io.nayuki.qrcodegen.QrCode;
 import org.Thietlan.Interfaces.Option;
 
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.TreeMap;
 
-import static org.Thietlan.Utilities.QRCodeSimplified.stringToQR;
+import static org.Thietlan.Utilities.QRCodeSimplified.generateWiFiQRCode;
 
-public class StringToQRCodeOption implements Option {
-
+public class WiFiQRCodeOption implements Option {
     private HashMap<String, String> parameters=new HashMap<>();
-    private final String stringActivation;
-
-    public StringToQRCodeOption(String stringActivation) {
-        this.stringActivation = stringActivation;
-        parameters.put("text","");
-
+    private final String activationString;
+    public WiFiQRCodeOption(String activationString) {
+        this.activationString = activationString;
+        parameters.put("ssid","");
+        parameters.put("password","");
     }
 
     @Override
     public String getActivationString() {
-        return stringActivation;
+        return activationString;
     }
 
     @Override
     public int run() throws IOException {
-        stringToQR(parameters.get("text"));
+        //System.out.println(parameters.get("password"));
+        generateWiFiQRCode(parameters.get("ssid"),parameters.get("password"));
         return 0;
     }
 
     @Override
     public void printOptionInfo() {
-        System.out.printf("%s. Enter something cool to put inside of a QR Code\n",this.getActivationString());
+        System.out.printf("%s. %s\n",this.getActivationString(),this.parameters.get("ssid"));
 
     }
 
@@ -54,6 +50,4 @@ public class StringToQRCodeOption implements Option {
     public TreeMap<String, Option> getNextOptions() {
         return null;
     }
-
-
 }

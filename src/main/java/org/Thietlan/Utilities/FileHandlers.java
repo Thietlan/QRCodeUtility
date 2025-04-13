@@ -6,13 +6,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FileHandlers {
-    private static Set<String> setOfWiFiFiles(String dir) {
+    public static Set<String> setOfWiFiFiles(String dir) {
 
 
         File dirFile = new File(dir);
-        System.out.println(dirFile.isDirectory());
         if (dirFile.isDirectory() && dirFile.exists()) {
-            System.out.println("got here");
             return Stream.of(dirFile.listFiles())
                     .filter(file -> !file.isDirectory())
                     .map(File::getName)

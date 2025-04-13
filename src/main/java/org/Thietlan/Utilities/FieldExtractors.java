@@ -16,20 +16,21 @@ public class FieldExtractors {
 
             Pattern pattern = Pattern.compile(regexField);
 
-            String password = file.findWithinHorizon(pattern, 0);
+            String value = file.findWithinHorizon(pattern, 0);
 
-            if (password != null) {
+            if (value != null) {
 
-                Matcher matcher = pattern.matcher(password);
+                Matcher matcher = pattern.matcher(value);
                 matcher.find();
+                //System.out.println(matcher.group(1));
                 return matcher.group(1);
             } else {
-                System.out.printf("No field %s found in file\n", field);
+                //System.out.printf("No field %s found in file\n", field);
                 return null;
             }
 
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            //System.out.println("File not found");
         }
         return null;
 

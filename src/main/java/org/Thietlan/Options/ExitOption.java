@@ -6,15 +6,20 @@ import java.util.*;
 
 public class ExitOption implements Option {
 
-    private Set<String> parameters=Collections.emptySet();
+    private final Set<String> parameters=Collections.emptySet();
+    private final String stringActivation;
+    public ExitOption(String stringActivation) {
+        this.stringActivation = stringActivation;
+    }
+
     @Override
     public String getActivationString() {
-        return "2";
+        return stringActivation;
     }
 
     @Override
     public int run() {
-        return 1;
+        return -1;
     }
 
     @Override
@@ -31,6 +36,11 @@ public class ExitOption implements Option {
     @Override
     public Set<String> getRequiredParameters() {
         return parameters;
+    }
+
+    @Override
+    public TreeMap<String, Option> getNextOptions() {
+        return null;
     }
 
 

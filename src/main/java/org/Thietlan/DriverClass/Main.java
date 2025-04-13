@@ -18,6 +18,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static org.Thietlan.Utilities.FileHandlers.setOfWiFiFiles;
+
 
 public class Main {
     public static  void main(String[] args) throws IOException {
@@ -42,6 +44,7 @@ public class Main {
 //            System.out.println(file);
 //        }
 //        generateWiFiQRCode(extractFieldFromTOMLFile("testNetworkFile.txt","ssid"),extractFieldFromTOMLFile("testNetworkFile.txt","psk"));
+
 
 
         Manager mainManager=new Manager();
