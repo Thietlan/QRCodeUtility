@@ -55,12 +55,18 @@ public class Manager {
 
             HashMap<String,String> parameterMap=new HashMap<>();
             //System.out.println(option.getClass().getName());
+
             if(!option.getClass().getName().equals("org.Thietlan.Options.WiFiQRCodeOption")) {
-                System.out.println("Hmm shouldn't be here");
+                //System.out.println("Hmm shouldn't be here");
                 for (String parameter : option.getRequiredParameters()) {
                     System.out.printf("Enter %s: \n", parameter);
                     parameterMap.put(parameter, scanner.nextLine());
                     option.setParameters(parameterMap);
+                }
+            }else{
+               // System.out.println("So this that kind of wifiqr option");
+                if(option instanceof WiFiQRCodeOption) {
+                    //System.out.println("Hey this also worked");
                 }
             }
 

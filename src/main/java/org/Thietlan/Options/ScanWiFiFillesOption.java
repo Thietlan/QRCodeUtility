@@ -25,8 +25,14 @@ public class ScanWiFiFillesOption implements Option {
 
     @Override
     public int run() throws IOException {
-        System.out.println("I can generate a QR code for the following networks:");
-        return 2;
+        createNextOptions();
+        if (nextOptions.isEmpty()) {
+            System.out.println("No Wi-Fi details files found in the default directory");
+            return 0;
+        }else {
+            System.out.println("I can generate a QR code for the following networks:");
+            return 2;
+        }
     }
 
     @Override
@@ -46,20 +52,26 @@ public class ScanWiFiFillesOption implements Option {
 
     @Override
     public TreeMap<String, Option> getNextOptions() {
+        return nextOptions;
+    }
+
+    public  void createNextOptions(){
         int len=1;
 
-        Set<String> files=setOfWiFiFiles("D:\\Cool qr scanner\\QRCodeUtility");
-        for (String file : files) {
-            //System.out.printf("%s. I can generate QR codes for the following%s\n",len,file);
-            Option optionWIFI=createWIFIOptionTOMLFile(file,len);
-            if (optionWIFI!=null) {
-                nextOptions.put(optionWIFI.getActivationString(),optionWIFI);
-                len++;
+        Set<String> files=setOfWiFiFiles("/etc/NetworkManager/system-connections");
+        if(files!=null) {
+            for (String file : files) {
+                //System.out.printf("%s. I can generate QR codes for the following%s\n",len,file);
+                Option optionWIFI = createWIFIOptionTOMLFile(file, len);
+                if (optionWIFI != null) {
+                    nextOptions.put(optionWIFI.getActivationString(), optionWIFI);
+                    len++;
+
+                }
 
             }
-
         }
-        return nextOptions;
+
     }
 
     private Option createWIFIOptionTOMLFile(String file,int len) {
